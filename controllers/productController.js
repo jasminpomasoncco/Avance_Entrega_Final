@@ -1,17 +1,6 @@
 const Product =  require('../containers/containerProduct');
 const product = new Product('data/products.txt');
 
-const getAllProducts = async(req, res) => {
-    try {
-        res.json({
-            products: await product.getAll()
-        });
-    } catch (error) {
-        res.status(500).json({
-            error: 'Something went wrong'
-        })
-    }
-}
 
 const getProductById = async(req, res) => {
     try {
@@ -65,7 +54,7 @@ const updateProduct = async(req, res) => {
     }
 }
 
-const deletePoduct = (req, res) => {
+const deleteProduct = (req, res) => {
     try {
         product.deleteById(+req.params.id)
         return res.json({
@@ -79,9 +68,8 @@ const deletePoduct = (req, res) => {
 }
 
 module.exports = {
-    getAllProducts,
     getProductById,
     createProduct,
     updateProduct,
-    deletePoduct
+    deleteProduct
 }
